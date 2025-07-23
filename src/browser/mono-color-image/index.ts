@@ -1,4 +1,4 @@
-import { hexToRGB } from '../../base/hex-to-rgb'
+import { hexToRGB } from '@/base/hex-to-rgb'
 import { adler32, chunk } from './lib'
 
 /**

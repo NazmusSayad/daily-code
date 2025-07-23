@@ -6,13 +6,7 @@
     "skipLibCheck": true,
     "declaration": true,
     "strict": true,
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
+    "paths": { "@/*": ["./*"] }
   },
-  "include": [
-    "src"
-  ]
+  "include": ["src"]
 }

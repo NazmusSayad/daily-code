@@ -31,6 +31,11 @@
       "require": "./dist/node/index.cjs",
       "types": "./dist/node/index.d.cts"
     },
+    "./server": {
+      "import": "./dist/server/index.mjs",
+      "require": "./dist/server/index.cjs",
+      "types": "./dist/server/index.d.cts"
+    },
     "./browser": {
       "import": "./dist/browser/index.mjs",
       "require": "./dist/browser/index.cjs",
