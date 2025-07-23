@@ -1,6 +1,6 @@
 {
   "name": "daily-code",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "test": "bun test",
     "dev": "npmize dev",
@@ -8,6 +8,7 @@
     "start": "run ./src/index.ts"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.19",
     "npmize": "^1.1.11",
     "typescript": "^5.8.3"
   },

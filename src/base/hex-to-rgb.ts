@@ -1,0 +1,18 @@
+export function hexToRGB(hex: string) {
+  hex = hex.toUpperCase()
+
+  if (/^#[0-9A-F]{3}$/.test(hex)) {
+    hex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`
+  }
+
+  if (!/^#[0-9A-F]{6}$/.test(hex)) {
+    throw new Error('Invalid hex color code')
+  }
+
+  const color = hex.replace('#', '')
+  const r = parseInt(color.substring(0, 2), 16)
+  const g = parseInt(color.substring(2, 4), 16)
+  const b = parseInt(color.substring(4, 6), 16)
+
+  return { r, g, b }
+}
