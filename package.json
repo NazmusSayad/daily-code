@@ -1,0 +1,39 @@
+{
+  "name": "daily-code",
+  "version": "0.0.1",
+  "scripts": {
+    "test": "bun test",
+    "dev": "npmize dev",
+    "build": "npmize build",
+    "start": "run ./src/index.ts"
+  },
+  "devDependencies": {
+    "npmize": "^1.1.11",
+    "typescript": "^5.8.3"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.cts"
+    },
+    "./ts": {
+      "import": "./dist/types/index.mjs",
+      "require": "./dist/types/index.cjs",
+      "types": "./dist/types/index.d.cts"
+    },
+    "./node": {
+      "import": "./dist/node/index.mjs",
+      "require": "./dist/node/index.cjs",
+      "types": "./dist/node/index.d.cts"
+    },
+    "./browser": {
+      "import": "./dist/browser/index.mjs",
+      "require": "./dist/browser/index.cjs",
+      "types": "./dist/browser/index.d.cts"
+    }
+  }
+}
