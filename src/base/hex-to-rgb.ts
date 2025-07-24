@@ -11,11 +11,11 @@
 export function hexToRGB(hex: string) {
   let localHex = hex.toUpperCase()
 
-  if (/^#[0-9A-F]{3}$/.test(hex)) {
-    localHex = `#${hex[1]}${hex[1]}${hex[2]}${hex[2]}${hex[3]}${hex[3]}`
+  if (/^#[0-9A-F]{3}$/.test(localHex)) {
+    localHex = `#${localHex[1]}${localHex[1]}${localHex[2]}${localHex[2]}${localHex[3]}${localHex[3]}`
   }
 
-  if (!/^#[0-9A-F]{6}$/.test(hex)) {
+  if (!/^#[0-9A-F]{6}$/.test(localHex)) {
     throw new Error('Invalid hex color code')
   }
 
