@@ -7,7 +7,7 @@ export function checkNamespace(namespace: Namespace) {
     throw new Error('First argument must be a namespace')
   }
 
-  if ((namespace as any)[namespaceKey]) {
+  if ((namespace as unknown as Record<string, unknown>)[namespaceKey]) {
     throw new Error('Another router attached with this namespace')
   }
 
@@ -19,7 +19,7 @@ export function checkNamespace(namespace: Namespace) {
   })
 }
 
-export const parseEventAndBodyAndSendFn = (rawArgs: any[]) => {
+export function parseEventAndBodyAndSendFn(rawArgs: unknown[]) {
   const [event, ...args] = rawArgs
   const lastElement = args[args.length - 1]
 

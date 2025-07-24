@@ -53,7 +53,7 @@ export class Router {
     const config = options ? { ...defaultOptions, ...options } : defaultOptions
 
     namespace.on('connect', (socket) => {
-      socket.onAny((...args: any[]) => {
+      socket.onAny((...args: unknown[]) => {
         const entries = this.#store.entries()
         const client = new Client(namespace, socket, args)
         socketHandler(entries, client, config)
@@ -63,9 +63,11 @@ export class Router {
 
   on(path: string, ...handlers: (Controller | Router)[]) {
     handlers.forEach((handler) => {
-      handler instanceof Router
-        ? this.#addRouter(path, handler)
-        : this.#addCallback(path, handler)
+      if (handler instanceof Router) {
+        this.#addRouter(path, handler)
+      } else {
+        this.#addCallback(path, handler)
+      }
     })
   }
 

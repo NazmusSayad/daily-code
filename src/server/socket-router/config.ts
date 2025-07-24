@@ -1,8 +1,8 @@
 import { Client } from './types'
 
 export const defaultOptions = {
-  handleException(err: any, client: Client) {
-    // throw err
+  handleException(err: unknown, client: Client) {
+    throw { err, client }
   },
 }
 

@@ -14,7 +14,7 @@ export function socketHandler(
   }
 
   try {
-    const rv = handler(client, (err: any) => {
+    const rv = handler(client, (err: unknown) => {
       if (err == null) socketHandler(entries, client, conf)
       else conf.handleException(err, client)
     })

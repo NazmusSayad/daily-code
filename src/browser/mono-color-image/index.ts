@@ -48,12 +48,10 @@ export function monoColorImage(color: string): string {
     ...chunk('IEND', []),
   ]
 
-  // @ts-ignore Check if Buffer is available in the environment
   if (typeof Buffer === 'undefined' || typeof Buffer.from !== 'function') {
     throw new Error('Buffer is not available in this environment')
   }
 
-  // @ts-ignore Buffer should be available, we are checking for it above
   const base64 = Buffer.from(Uint8Array.from(png)).toString('base64')
   return `data:image/png;base64,${base64}`
 }

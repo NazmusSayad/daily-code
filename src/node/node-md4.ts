@@ -11,7 +11,7 @@ import * as crypto from 'crypto'
 export function applyNodeMD4Issue() {
   try {
     crypto.createHash('md4')
-  } catch (e) {
+  } catch {
     console.warn(
       'Crypto "md4" is not supported anymore by this Node version',
       '\n',

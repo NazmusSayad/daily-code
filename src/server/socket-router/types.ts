@@ -3,11 +3,11 @@ import { Client as RawClient } from './core/client'
 
 export type Socket = RawSocket
 export type Namespace = RawNamespace
-export type Client<TBody extends any[] = any[]> = RawClient<TBody>
+export type Client<TBody extends unknown[] = unknown[]> = RawClient<TBody>
 
 export type OptionsPartial = Partial<Options>
 export interface Options {
-  handleException(err: any, client: Client): void
+  handleException(err: unknown, client: Client): void
 }
 
 export type HandlersMap = Map<RouteConfig, Controller>
@@ -18,7 +18,7 @@ export interface RouteConfig {
   event?: string
 }
 
-export type Controller<TBody extends any[] = any[]> = (
+export type Controller<TBody extends unknown[] = unknown[]> = (
   client: Client<TBody>,
-  next: (err?: any) => void
+  next: (err?: unknown) => void
 ) => void | Promise<void>
