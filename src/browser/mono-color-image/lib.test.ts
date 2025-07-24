@@ -40,7 +40,6 @@ describe('chunk', () => {
   it('should create a chunk with correct structure for IDAT type with empty data', () => {
     const type = 'IDAT'
     const data: number[] = []
-    const expectedLength = data.length
     const typeBytes = [...'IDAT'].map((c) => c.charCodeAt(0))
     const expectedCrc = crc32([...typeBytes, ...data])
 

@@ -19,11 +19,12 @@ export function applyNodeMD4Issue() {
     )
 
     const origCreateHash = crypto.createHash
-    const fakeCreateHash = (alg: any, opts: any) => {
+
+    function fakeCreateHash(alg: string, opts: crypto.HashOptions) {
       return origCreateHash(alg === 'md4' ? 'md5' : alg, opts)
     }
 
-    // @ts-ignore
+    // @ts-expect-error - This is a workaround to support MD4 hashing
     crypto.createHash = fakeCreateHash
   }
 }

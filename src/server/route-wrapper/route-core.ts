@@ -1,11 +1,11 @@
 import {
-  RouteOptions,
-  RouteHandler,
   CatchHandler,
   FinisherHandler,
+  RouteHandler,
+  RouteOptions,
 } from './types.type'
 
-export function routeCore<TParams extends any[], TReturn>(
+export function routeCore<TParams extends unknown[], TReturn>(
   options: RouteOptions<TParams, TReturn>
 ) {
   const ExecuteRoute: ExecuteRoute<TParams, TReturn> = function (...handlers) {
@@ -39,9 +39,9 @@ export function routeCore<TParams extends any[], TReturn>(
   ExecuteRoute.create = function (catcher, finisher) {
     return routeCore({
       ...options,
-      finisher: finisher ?? (options.finisher as any),
-      middlewares: [...((options.middlewares ?? []) as any[])],
-      catcher: catcher ?? (options.catcher as any),
+      catcher: catcher ?? options.catcher,
+      finisher: finisher ?? options.finisher,
+      middlewares: [...(options.middlewares ?? [])],
     })
   }
 
@@ -55,10 +55,10 @@ export function routeCore<TParams extends any[], TReturn>(
   return ExecuteRoute
 }
 
-export type ExecuteRoute<TParams extends any[], TReturn> = {
-  (...handlers: RouteHandler<TParams>[]): (...args: TParams) => Promise<any>
+export type ExecuteRoute<TParams extends unknown[], TReturn> = {
+  (...handlers: RouteHandler<TParams>[]): (...args: TParams) => Promise<unknown>
 
-  create<TInnerParams extends any[] = TParams, TInnerReturn = TReturn>(
+  create<TInnerParams extends unknown[] = TParams, TInnerReturn = TReturn>(
     catcher?: CatchHandler<TInnerParams>,
     finisher?: FinisherHandler<TInnerParams, TInnerReturn>
   ): ExecuteRoute<TInnerParams, TInnerReturn>

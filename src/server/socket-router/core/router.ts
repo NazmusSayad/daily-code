@@ -1,8 +1,8 @@
-import { HandlersMap, Namespace, OptionsPartial, Controller } from '../types'
-import { checkNamespace } from './utils'
 import { defaultOptions } from '../config'
-import { socketHandler } from './socket-handler'
+import { Controller, HandlersMap, Namespace, OptionsPartial } from '../types'
 import { Client } from './client'
+import { socketHandler } from './socket-handler'
+import { checkNamespace } from './utils'
 
 /**
  * Socket.IO router

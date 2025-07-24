@@ -1,6 +1,6 @@
-import { Namespace } from '../types'
-import { namespaceKey } from '../config'
 import { Namespace as RawNamespace } from 'socket.io'
+import { namespaceKey } from '../config'
+import { Namespace } from '../types'
 
 export function checkNamespace(namespace: Namespace) {
   if (!(namespace instanceof RawNamespace)) {

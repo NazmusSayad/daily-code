@@ -1,4 +1,4 @@
-import { HandlersEntries, HandlersList, Options, Client } from '../types'
+import { Client, HandlersEntries, HandlersList, Options } from '../types'
 
 export function socketHandler(
   entries: HandlersEntries,

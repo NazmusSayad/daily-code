@@ -1,7 +1,7 @@
 import { Router } from './core'
 
-export { Router as SocketIoRouter }
 export * from './types'
+export { Router as SocketIoRouter }
 
 /**
  * Create a new Socket.IO router
