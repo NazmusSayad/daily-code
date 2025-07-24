@@ -3,6 +3,7 @@
     "baseUrl": "./src",
     "outDir": "./dist",
     "target": "ES6",
+    "moduleResolution": "node",
     "skipLibCheck": true,
     "declaration": true,
     "strict": true,

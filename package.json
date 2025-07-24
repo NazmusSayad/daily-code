@@ -5,11 +5,13 @@
     "test": "bun test",
     "dev": "npmize dev",
     "build": "npmize build",
-    "start": "run ./src/index.ts"
+    "start": "run ./src/index.ts",
+    "tsc": "tsc --noEmit --watch"
   },
   "devDependencies": {
     "@types/bun": "^1.2.19",
     "npmize": "^1.1.11",
+    "socket.io": "^4.8.1",
     "typescript": "^5.8.3"
   },
   "main": "./dist/index.cjs",
