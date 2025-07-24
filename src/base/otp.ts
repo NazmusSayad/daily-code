@@ -30,6 +30,9 @@ function generateLetterOtp(length: number) {
   )
 }
 
+/**
+ * The available OTP generation types.
+ */
 export type OTPGenerationType =
   | 'base64'
   | 'digits'
@@ -40,6 +43,13 @@ export type OTPGenerationType =
   | 'alphanumeric-upper'
   | 'alphanumeric-lower'
 
+/**
+ * Generates a one-time password (OTP) of the specified type and length.
+ * @param type The OTP generation type
+ * @param length The length of the OTP
+ * @returns The generated OTP string
+ * @throws {Error} If the OTP type is invalid
+ */
 export function generateOtp(type: OTPGenerationType, length: number): string {
   if (type === 'digits') {
     return generateNumberOTP(length)

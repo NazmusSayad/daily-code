@@ -10,6 +10,11 @@ export function randomNumber(max = 1, min = 0) {
   return Math.floor(Math.random() * (max - min + 1) + min)
 }
 
+/**
+ * Parses a string or number to a number, supporting 'px' units.
+ * @param value The value to parse (string or number)
+ * @returns The parsed number, or null if invalid
+ */
 export function getSizeAsNumber(value: string | number): number | null {
   if (typeof value === 'number') return value
 
@@ -23,6 +28,13 @@ export function getSizeAsNumber(value: string | number): number | null {
   return null
 }
 
+/**
+ * Clamps a number between a minimum and maximum value.
+ * @param num The number to clamp
+ * @param min The minimum value
+ * @param max The maximum value
+ * @returns The clamped number
+ */
 export function numberClamp(num: number, min: number, max: number): number {
   return Math.min(Math.max(num, min), max)
 }
