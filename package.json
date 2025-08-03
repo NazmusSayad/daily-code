@@ -1,6 +1,6 @@
 {
   "name": "daily-code",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "test": "bun test",
     "lint": "eslint .",
@@ -31,7 +31,6 @@
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
@@ -57,6 +56,25 @@
       "import": "./dist/browser/index.mjs",
       "require": "./dist/browser/index.cjs",
       "types": "./dist/browser/index.d.cts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "dist/index.d.cts"
+      ],
+      "ts": [
+        "dist/types/index.d.cts"
+      ],
+      "node": [
+        "dist/node/index.d.cts"
+      ],
+      "server": [
+        "dist/server/index.d.cts"
+      ],
+      "browser": [
+        "dist/browser/index.d.cts"
+      ]
     }
   }
 }
