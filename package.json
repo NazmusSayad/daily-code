@@ -1,81 +1,68 @@
 {
   "name": "daily-code",
-  "version": "1.0.2",
+  "version": "1.1.0",
+  "type": "module",
+  "sideEffects": false,
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "test": "bun test",
     "lint": "eslint .",
     "fix": "eslint . --fix",
-    "dev": "npmize dev",
-    "build": "npmize build",
-    "start": "run ./src/index.ts",
-    "tsc": "tsc --noEmit --watch"
+    "tc": "tsc --noEmit --watch",
+    "build": "rollup -c",
+    "dev": "concurrently \"rollup -c -w\" \"tsc --noEmit -w\"",
+    "start": "tsx --watch ./src/index.ts"
   },
-  "devDependencies": {
-    "@eslint/compat": "^1.3.1",
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.31.0",
-    "@types/bun": "^1.2.19",
-    "@typescript-eslint/eslint-plugin": "^8.38.0",
-    "@typescript-eslint/parser": "^8.38.0",
-    "eslint": "^9.31.0",
-    "eslint-config-prettier": "^10.1.8",
-    "eslint-plugin-check-file": "^3.3.0",
-    "eslint-plugin-import": "^2.32.0",
-    "eslint-plugin-prettier": "^5.5.3",
-    "npmize": "^1.1.11",
-    "prettier": "^3.6.2",
-    "prettier-plugin-organize-imports": "^4.2.0",
-    "socket.io": "^4.8.1",
-    "typescript": "^5.8.3",
-    "typescript-eslint": "^8.38.0"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
-  "types": "./dist/index.d.cts",
   "exports": {
     ".": {
       "import": "./dist/index.mjs",
       "require": "./dist/index.cjs",
-      "types": "./dist/index.d.cts"
+      "types": "./dist/index.d.ts"
     },
     "./ts": {
-      "import": "./dist/types/index.mjs",
-      "require": "./dist/types/index.cjs",
-      "types": "./dist/types/index.d.cts"
+      "import": "./dist/types.mjs",
+      "require": "./dist/types.cjs",
+      "types": "./dist/types.d.ts"
     },
     "./node": {
-      "import": "./dist/node/index.mjs",
-      "require": "./dist/node/index.cjs",
-      "types": "./dist/node/index.d.cts"
+      "import": "./dist/node.mjs",
+      "require": "./dist/node.cjs",
+      "types": "./dist/node.d.ts"
     },
     "./server": {
-      "import": "./dist/server/index.mjs",
-      "require": "./dist/server/index.cjs",
-      "types": "./dist/server/index.d.cts"
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.cjs",
+      "types": "./dist/server.d.ts"
     },
     "./browser": {
-      "import": "./dist/browser/index.mjs",
-      "require": "./dist/browser/index.cjs",
-      "types": "./dist/browser/index.d.cts"
+      "import": "./dist/browser.mjs",
+      "require": "./dist/browser.cjs",
+      "types": "./dist/browser.d.ts"
     }
   },
-  "typesVersions": {
-    "*": {
-      ".": [
-        "dist/index.d.cts"
-      ],
-      "ts": [
-        "dist/types/index.d.cts"
-      ],
-      "node": [
-        "dist/node/index.d.cts"
-      ],
-      "server": [
-        "dist/server/index.d.cts"
-      ],
-      "browser": [
-        "dist/browser/index.d.cts"
-      ]
-    }
+  "devDependencies": {
+    "@eslint/compat": "^1.4.0",
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.38.0",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/bun": "^1.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.46.1",
+    "@typescript-eslint/parser": "^8.46.1",
+    "concurrently": "^9.2.1",
+    "eslint": "^9.38.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-check-file": "^3.3.0",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.4",
+    "prettier": "^3.6.2",
+    "prettier-plugin-organize-imports": "^4.3.0",
+    "rollup": "^4.52.5",
+    "rollup-plugin-dts": "^6.2.3",
+    "socket.io": "^4.8.1",
+    "tslib": "^2.8.1",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.46.1"
   }
 }

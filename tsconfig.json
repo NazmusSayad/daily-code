@@ -1,13 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "outDir": "./dist",
-    "target": "ES6",
-    "moduleResolution": "node",
-    "skipLibCheck": true,
+    "target": "ES2022",
+    "module": "ESNext",
     "declaration": true,
+    "outDir": "dist",
     "strict": true,
-    "paths": { "@/*": ["./*"] }
+    "noEmit": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
   "include": ["src"]
 }
