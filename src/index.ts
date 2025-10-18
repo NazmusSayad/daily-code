@@ -1,2 +1,2 @@
-export * from './base/index'
-export * from './types/index'
+export * from './base'
+export * from './types'

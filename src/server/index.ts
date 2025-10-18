@@ -1,2 +1,2 @@
-export * from './route-wrapper/index'
-export * from './socket-router/index'
+export * from './route-wrapper'
+export * from './socket-router'
