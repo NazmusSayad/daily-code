@@ -1,32 +1,53 @@
 import typescript from '@rollup/plugin-typescript'
-import { defineConfig, type OutputOptions, type RollupOptions } from 'rollup'
+import { defineConfig } from 'rollup'
 import dts from 'rollup-plugin-dts'
 
-function createOutput(input: string, output: string): RollupOptions[] {
-  return [
-    {
-      input: `src/${input}`,
-      output: [
-        { file: `dist/${output}.mjs`, format: 'es', sourcemap: true },
-        { file: `dist/${output}.cjs`, format: 'cjs', sourcemap: true },
-      ] satisfies OutputOptions[],
-      plugins: [typescript({ tsconfig: './tsconfig.json' })],
-      external: [/node_modules/],
-    },
-
-    {
-      input: `src/${input}`,
-      output: { file: `dist/${output}.d.ts`, format: 'es' },
-      plugins: [dts()],
-    },
-  ]
-}
+const inputs = {
+  index: 'src/index.ts',
+  types: 'src/types/index.ts',
+  node: 'src/node/index.ts',
+  server: 'src/server/index.ts',
+  browser: 'src/browser/index.ts',
+  react: 'src/react/index.ts',
+} as const
 
 export default defineConfig([
-  ...createOutput('base/index.ts', 'index'),
-  ...createOutput('types/index.ts', 'types'),
-  ...createOutput('node/index.ts', 'node'),
-  ...createOutput('server/index.ts', 'server'),
-  ...createOutput('browser/index.ts', 'browser'),
-  ...createOutput('react/index.ts', 'react'),
+  {
+    input: inputs,
+    output: [
+      {
+        dir: 'dist',
+        format: 'es',
+        sourcemap: true,
+        entryFileNames({ name }) {
+          return `${name}.mjs`
+        },
+      },
+
+      {
+        dir: 'dist',
+        format: 'cjs',
+        sourcemap: true,
+        entryFileNames({ name }) {
+          return `${name}.cjs`
+        },
+      },
+    ],
+
+    external: [/node_modules/],
+    plugins: [typescript({ tsconfig: './tsconfig.json' })],
+  },
+
+  {
+    input: inputs,
+    output: {
+      dir: 'dist',
+      format: 'es',
+      entryFileNames({ name }) {
+        return `${name}.d.ts`
+      },
+    },
+
+    plugins: [dts({ tsconfig: './tsconfig.json' })],
+  },
 ])
