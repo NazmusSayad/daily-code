@@ -72,5 +72,15 @@
       "import": "./dist/react.mjs",
       "require": "./dist/react.cjs"
     }
+  },
+  "author": "Nazmus Sayad",
+  "license": "MIT",
+  "homepage": "https://github.com/NazmusSayad/daily-code#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/NazmusSayad/daily-code.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NazmusSayad/daily-code/issues"
   }
 }
