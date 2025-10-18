@@ -1,3 +1,5 @@
+export * from './canvas-image'
+export * from './cookie'
 export * from './download-file-url'
 export * from './element'
 export * from './file-explorer'

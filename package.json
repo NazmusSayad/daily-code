@@ -15,7 +15,7 @@
     "build": "rollup -c",
     "dev": "concurrently \"rollup -c -w\" \"tsc --noEmit -w\"",
     "start": "tsx --watch ./src/index.ts",
-    "prepublishOnly": "npm run lint && npm run build && npm run test"
+    "prepublishOnly": "rm -rf ./dist && npm run lint && npm run build && npm run test"
   },
   "devDependencies": {
     "@eslint/compat": "^1.4.0",
