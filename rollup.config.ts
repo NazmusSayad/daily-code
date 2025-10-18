@@ -1,5 +1,6 @@
 import typescript from '@rollup/plugin-typescript'
-import { defineConfig, type ModuleFormat } from 'rollup'
+import crypto from 'node:crypto'
+import { defineConfig, type ModuleFormat, type OutputOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 
 const inputs = {
@@ -15,22 +16,20 @@ const inputs = {
 export default defineConfig([
   {
     input: inputs,
+    external: [/node_modules/gim],
+    plugins: [typescript({ tsconfig: './tsconfig.json' })],
     output: [
       createOutput({ format: 'esm', ext: 'mjs', sourcemap: true }),
       createOutput({ format: 'commonjs', ext: 'cjs', sourcemap: true }),
       createOutput({ format: 'amd', ext: 'amd.js', sourcemap: true }),
       createOutput({ format: 'system', ext: 'system.js', sourcemap: true }),
     ],
-
-    external: [/node_modules/],
-    plugins: [typescript({ tsconfig: './tsconfig.json' })],
   },
 
   {
     input: inputs,
-    output: createOutput({ format: 'esm', ext: 'd.ts', sourcemap: false }),
-
     plugins: [dts({ tsconfig: './tsconfig.json' })],
+    output: createOutput({ format: 'esm', ext: 'd.ts', sourcemap: false }),
   },
 ])
 
@@ -38,7 +37,7 @@ function createOutput(options: {
   format: ModuleFormat
   ext: string
   sourcemap: boolean
-}) {
+}): OutputOptions {
   return {
     dir: 'dist',
     indent: '  ',
@@ -48,6 +47,10 @@ function createOutput(options: {
 
     entryFileNames({ name }) {
       return `${name}.${options.ext}`
+    },
+
+    chunkFileNames({ name }) {
+      return `${name}.${crypto.randomUUID()}.${options.ext}`
     },
   }
 }
