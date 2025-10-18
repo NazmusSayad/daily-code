@@ -40,6 +40,11 @@
       "import": "./dist/browser.mjs",
       "require": "./dist/browser.cjs",
       "types": "./dist/browser.d.ts"
+    },
+    "./react": {
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.cjs",
+      "types": "./dist/react.d.ts"
     }
   },
   "devDependencies": {
