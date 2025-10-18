@@ -1,19 +1,15 @@
-import { PrettifyRecord } from '@/types'
 import * as React from 'react'
 
 export type CreateContextOptions<TOutput> = {
   displayName?: string
-  initialValue?: TOutput
+  initialValue?: NoInfer<TOutput>
 
-  useProvider?: (children: React.ReactNode, props: TOutput) => React.ReactNode
+  useContextHook?: (context: NoInfer<TOutput> | undefined) => NoInfer<TOutput>
 
-  useContext?: (
-    context: NoInfer<TOutput> | undefined
-  ) => PrettifyRecord<TOutput>
-
-  useContextHandler?: (
-    context: React.Context<TOutput | undefined>
-  ) => PrettifyRecord<TOutput>
+  useChildrenProvider?: (
+    children: React.ReactNode | undefined,
+    value: NoInfer<TOutput>
+  ) => React.ReactNode
 }
 
 /**
@@ -48,48 +44,41 @@ export function createContext<const TInput extends object, const TOutput>(
   useValue: (props: TInput) => TOutput,
   options?: CreateContextOptions<NoInfer<TOutput>>
 ) {
-  type PrettifiedOutput = PrettifyRecord<NoInfer<TOutput>>
   const displayName = options?.displayName ?? 'Daily Code / React Context'
 
   const nativeContext = React.createContext(options?.initialValue)
   nativeContext.displayName = displayName
 
-  function useContext(): PrettifiedOutput {
-    if (options?.useContextHandler) {
-      return options.useContextHandler(nativeContext)
-    }
-
+  function useContextHook() {
     const context = React.useContext(nativeContext)
 
-    if (options?.useContext) {
-      return options.useContext(context)
+    if (options?.useContextHook) {
+      return options.useContextHook(context)
     }
 
     if (context === undefined) {
       throw new Error(`${displayName}: Used outside of its provider`)
     }
 
-    return context as PrettifiedOutput
+    return context
   }
 
   function ContextProvider({
     children,
     ...props
-  }: React.PropsWithChildren<TInput>) {
-    const providerValue = useValue(props as TInput)
-
-    const providerChildren = options?.useProvider
-      ? options.useProvider(children, providerValue)
-      : children
+  }: React.PropsWithChildren<NoInfer<TInput>>) {
+    const value = useValue(props as NoInfer<TInput>)
 
     return (
-      <nativeContext.Provider value={providerValue}>
-        {providerChildren}
+      <nativeContext.Provider value={value}>
+        {options?.useChildrenProvider
+          ? options.useChildrenProvider(children, value)
+          : children}
       </nativeContext.Provider>
     )
   }
 
   ContextProvider.displayName = `${displayName} Provider`
 
-  return [ContextProvider, useContext, nativeContext] as const
+  return [ContextProvider, useContextHook, nativeContext] as const
 }
