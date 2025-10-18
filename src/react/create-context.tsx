@@ -1,5 +1,5 @@
-import * as React from 'react'
-import { PrettifyRecord } from './utils.type'
+import { PrettifyRecord } from '@/types'
+import * as React from 'react' 
 
 export type CreateContextOptions<TOutput> = {
   displayName?: string

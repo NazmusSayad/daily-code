@@ -17,3 +17,13 @@ export type Prettify<T extends object> = {
 export type OmitPartials<T> = {
   [K in keyof T as null extends T[K] ? never : K]: T[K]
 }
+
+/**
+ * Utility type to simplify and flatten record types for better readability in type hints.
+ * @example
+ *   type A = { a: number }
+ *   type B = PrettifyRecord<{ a: number }> // { a: number }
+ *   type C = PrettifyRecord<{ a: number; b: string }> // { a: number; b: string }
+ */
+export type PrettifyRecord<T> =
+  T extends Record<string, unknown> ? Prettify<T> : T
