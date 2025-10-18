@@ -44,3 +44,22 @@ export function arrayPartition<T>(
   for (const item of arr) (predicate(item) ? pass : fail).push(item)
   return [pass, fail]
 }
+
+/**
+ * Sorts an array by frequency of elements.
+ * @param arr The array to sort
+ * @returns A new array sorted by frequency
+ */
+export function sortByFrequency<T>(arr: T[]): T[] {
+  const freqMap = new Map<T, number>()
+
+  for (const item of arr) {
+    freqMap.set(item, (freqMap.get(item) ?? 0) + 1)
+  }
+
+  const sorted = [...freqMap.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([item]) => item)
+
+  return [...new Set(sorted)]
+}

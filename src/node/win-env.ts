@@ -4,6 +4,7 @@ export type Scope = 'Machine' | 'User'
 
 /**
  * Error thrown when environment variable operations fail.
+ * @description **THIS ONLY WORKS ON WINDOWS**
  * @example
  *   throw new EnvError(1, 'Failed to set variable')
  */
@@ -20,6 +21,7 @@ export class EnvError extends Error {
 /**
  * Executes a PowerShell command and returns its output as a string.
  * Throws EnvError if the command fails.
+ * @description **THIS ONLY WORKS ON WINDOWS**
  * @param command PowerShell command to execute
  * @returns Output of the command
  * @example
@@ -36,6 +38,7 @@ export function execPwshCommand(command: string) {
 
 /**
  * Reads an environment variable from the specified scope.
+ * @description **THIS ONLY WORKS ON WINDOWS**
  * @param name Name of the environment variable
  * @param scope Scope to read from ('Machine' or 'User')
  * @returns Value of the environment variable
@@ -50,6 +53,7 @@ export function readEnv(name: string, scope: Scope) {
 
 /**
  * Writes an environment variable to the specified scope.
+ * @description **THIS ONLY WORKS ON WINDOWS**
  * @param name Name of the environment variable
  * @param value Value to set
  * @param scope Scope to write to ('Machine' or 'User')
@@ -66,6 +70,7 @@ export function writeEnv(name: string, value: string, scope: Scope) {
 /**
  * Adds one or more paths to the PATH environment variable in the specified scope.
  * Ensures no duplicate paths are added.
+ * @description **THIS ONLY WORKS ON WINDOWS**
  * @param scope Scope to update ('Machine' or 'User')
  * @param paths Paths to add
  * @returns Output of the set command
