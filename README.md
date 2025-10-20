@@ -1,15 +1,20 @@
 # daily-code
 
-A collection of robust, type-safe utilities and helpers for Node.js, browser, React, and server environments. Includes utilities for color conversion, random numbers, async waits, DOM manipulation, environment variables, React hooks, and more.
+A collection of robust, type-safe utilities and helpers for Node.js, browser, React, and server environments. Includes utilities for color conversion, image generation, cookie management, array manipulation, string processing, environment variables, React hooks, Socket.IO routing, and more.
 
 ## Features
 
-- Type-safe utilities for Node.js, browser, React, and server
-- Color conversion and image helpers
-- Async and random utilities
-- Environment variable management for Windows
-- Route and socket wrappers for server logic
-- React hooks and components
+- **Type-safe utilities** for Node.js, browser, React, and server environments
+- **Array manipulation** (shuffle, chunk, partition, sort by frequency)
+- **String processing** (capitalize, title case, truncate, UUID generation)
+- **Number utilities** (random numbers, clamping, size parsing)
+- **Color conversion and image generation** (hex to RGB, canvas images, avatars, gradients)
+- **DOM manipulation** (element creation, file downloads, cookie management)
+- **Async utilities** (wait, suspense handlers)
+- **Environment variable management** for Windows (PowerShell integration)
+- **Route and socket wrappers** for server logic (Express, Socket.IO)
+- **React hooks and components** (context, effects, error boundaries)
+- **TypeScript utilities** (Prettify, OmitPartials, PrettifyRecord)
 - Written in modern TypeScript with strict type safety
 - Minimal bundle size
 - Zero dependencies
@@ -63,12 +68,17 @@ import { useEffectState } from 'daily-code/react'
 - `arrayShuffle(arr)`: Returns a new array with elements shuffled randomly
 - `arrayChunk(arr, size)`: Split an array into chunks of specified size
 - `arrayPartition(arr, predicate)`: Partition an array into two arrays based on a predicate function
+- `sortByFrequency(arr)`: Sorts an array by frequency of elements (most frequent first)
 
 #### Number Utilities
 
 - `randomNumber(max, min?)`: Generate a random integer between min and max (inclusive)
 - `getSizeAsNumber(value)`: Parse a string/number to a number (supports 'px' units)
 - `numberClamp(num, min, max)`: Clamp a number between minimum and maximum values
+
+#### Size Utilities
+
+- `formatBytesToHumanReadable(bytes)`: Format bytes into human readable format (B, KB, MB, GB, etc.)
 
 #### Object Utilities
 
@@ -79,6 +89,8 @@ import { useEffectState } from 'daily-code/react'
 
 - `stringCapitalize(str)`: Capitalize the first letter of a string
 - `stringToTitleCase(str)`: Convert a string to title case (first letter of each word capitalized)
+- `stringTruncate(str, length)`: Truncate a string to a specified length with ellipsis
+- `generateUUID()`: Generate a UUID (v4)
 
 #### Color Utilities
 
@@ -102,16 +114,46 @@ import { useEffectState } from 'daily-code/react'
 
 ### Browser Utilities (`daily-code/browser`)
 
+#### DOM & Element Utilities
+
 - `createElementFromString(html)`: Create an HTMLElement from an HTML string
 - `openFileExplorer(options?)`: Open a file picker dialog with options:
   - `accept`: File type filter (default: 'image/\*')
   - `multiple`: Allow multiple file selection (default: false)
+
+#### File Download Utilities
+
+- `downloadFileUrl(url, options?)`: Download a file from a URL with options:
+  - `filename`: Custom filename for download
+  - `target`: Link target (\_blank, \_self, etc.)
+  - `rel`: Link relation (noopener, noreferrer)
+  - `referrerPolicy`: Referrer policy for the link
+
+#### Image & Canvas Utilities
+
 - `findDominantColor(src, sampleThreshold?)`: Find the dominant color in an image (returns Promise of RGB string)
 - `monoColorImage(color)`: Generate a base64 PNG data URL for a 1x1 image of a given color
+- `generateDemoImage(options?)`: Generate a demo image with text overlay
+- `generateAvatar(options?)`: Generate an avatar image with initials
+- `generateRandomGradient(options?)`: Generate a random gradient image
+- `generateNoiseImage(options?)`: Generate a noise texture image
+
+#### Cookie Utilities
+
+- `setCookie(name, value, options?)`: Set a cookie with advanced options (expires, maxAge, path, domain, secure, sameSite)
+- `getCookie(name)`: Get a cookie value by name
+- `deleteCookie(name, options?)`: Delete a cookie
+- `hasCookie(name)`: Check if a cookie exists
+- `getAllCookies()`: Get all cookies as a key-value object
 
 ### Node Utilities (`daily-code/node`)
 
+#### Crypto Utilities
+
 - `applyNodeMD4Issue()`: Patch Node.js crypto to support MD4 (fallback to MD5 if not supported)
+
+#### Windows Environment Variables (PowerShell)
+
 - `execPwshCommand(command)`: Execute a PowerShell command and return output
 - `readEnv(name, scope)`: Read a Windows environment variable from specified scope ('Machine' or 'User')
 - `writeEnv(name, value, scope)`: Write a Windows environment variable to specified scope
@@ -126,13 +168,23 @@ import { useEffectState } from 'daily-code/react'
 
 ### React Utilities (`daily-code/react`)
 
+#### Context & State Management
+
 - `createContext(useValue, options?)`: Create a React context with easy-to-use hook
-- `createReactSuspense(promise?)`: Create a React Suspense handler for promises
-- `ErrorBoundary`: React error boundary component for catching and displaying errors
+- `useEffectState(initialValue, deps)`: Hook that combines useState and useEffect for reactive state
 - `useEffectExceptOnMount(effect, dependencies)`: Like useEffect but skips running on initial mount
+
+#### Suspense & Async
+
+- `createReactSuspense(promise?)`: Create a React Suspense handler for promises
 - `useSuspense(suspended)`: React Suspense utility hook that throws a promise when suspended
+
+#### Error Handling
+
+- `ErrorBoundary`: React error boundary component for catching and displaying errors
 
 ### Type Utilities (`daily-code/ts`)
 
 - `Prettify<T>`: Flatten and prettify complex TypeScript types for better readability
 - `OmitPartials<T>`: Omit partial (nullable) properties from an object type
+- `PrettifyRecord<T>`: Simplify and flatten record types for better readability in type hints
