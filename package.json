@@ -1,9 +1,55 @@
 {
   "name": "daily-code",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "sideEffects": false,
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
+    },
+    "./node": {
+      "import": "./dist/node.mjs",
+      "require": "./dist/node.cjs"
+    },
+    "./server": {
+      "import": "./dist/server.mjs",
+      "require": "./dist/server.cjs"
+    },
+    "./browser": {
+      "import": "./dist/browser.mjs",
+      "require": "./dist/browser.cjs"
+    },
+    "./react": {
+      "import": "./dist/react.mjs",
+      "require": "./dist/react.cjs"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      ".": [
+        "./dist/index.d.mts",
+        "./dist/index.d.cts"
+      ],
+      "node": [
+        "./dist/node.d.mts",
+        "./dist/node.d.cts"
+      ],
+      "server": [
+        "./dist/server.d.mts",
+        "./dist/server.d.cts"
+      ],
+      "browser": [
+        "./dist/browser.d.mts",
+        "./dist/browser.d.cts"
+      ],
+      "react": [
+        "./dist/react.d.mts",
+        "./dist/react.d.cts"
+      ]
+    }
+  },
   "scripts": {
     "prepare": "husky",
     "test": "bun test",
@@ -44,28 +90,6 @@
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
     "vite": "^7.1.10"
-  },
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    },
-    "./node": {
-      "import": "./dist/node.mjs",
-      "require": "./dist/node.cjs"
-    },
-    "./server": {
-      "import": "./dist/server.mjs",
-      "require": "./dist/server.cjs"
-    },
-    "./browser": {
-      "import": "./dist/browser.mjs",
-      "require": "./dist/browser.cjs"
-    },
-    "./react": {
-      "import": "./dist/react.mjs",
-      "require": "./dist/react.cjs"
-    }
   },
   "author": "Nazmus Sayad",
   "license": "MIT",
