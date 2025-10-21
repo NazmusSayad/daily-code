@@ -1,4 +1,4 @@
-import * as crypto from 'crypto'
+import crypto from 'crypto'
 
 /**
  * Applies a workaround to the Node.js crypto module to support MD4 hashing.
