@@ -31,3 +31,18 @@ export function objectOmit<T extends object, K extends keyof T>(
   keys.forEach((k) => delete result[k])
   return result
 }
+
+/**
+ * Returns undefined if the object has no keys.
+ * @param obj The object to check
+ * @returns The object if it has keys, undefined otherwise
+ */
+export function undefinedIfHasNoKeys<T extends object>(obj: T): T | undefined {
+  const values = Object.values(obj)
+
+  if (values.every((value) => value == null)) {
+    return undefined
+  }
+
+  return obj
+}
