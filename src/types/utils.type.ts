@@ -27,3 +27,35 @@ export type OmitPartials<T> = {
  */
 export type PrettifyRecord<T> =
   T extends Record<string, unknown> ? Prettify<T> : T
+
+/**
+ * Utility type to simplify and flatten array types for better readability in type hints.
+ * @example
+ *   type A = { a: number }
+ *   type B = PrettifyArray<{ a: number }> // { a: number }
+ *   type C = PrettifyArray<{ a: number; b: string }> // { a: number; b: string }
+ */
+export type PrettifyArray<T> =
+  T extends Array<infer U> ? (U extends object ? Prettify<U> : U)[] : T
+
+/**
+ * Utility type to simplify and flatten record types for better readability in type hints.
+ * @example
+ *   type A = { a: number }
+ *   type B = Nullify<{ a: number }> // { a: number | null | undefined }
+ *   type C = Nullify<{ a: number; b: string }> // { a: number | null | undefined; b: string | null | undefined }
+ */
+export type Nullify<T> = {
+  [K in keyof T]: T[K] | null | undefined
+}
+
+/**
+ * Utility type to simplify and flatten array types for better readability in type hints.
+ * @example
+ *   type A = { a: number }
+ *   type B = NullifyPartials<{ a: number }> // { a?: number | null | undefined }
+ *   type C = NullifyPartial<{ a: number; b: string }> // { a?: number | null | undefined; b?: string | null | undefined }
+ */
+export type NullifyPartial<T> = {
+  [K in keyof T]?: T[K] | null | undefined
+}

@@ -63,3 +63,15 @@ export function sortByFrequency<T>(arr: T[]): T[] {
 
   return [...new Set(sorted)]
 }
+
+/**
+ * Returns a new array with all nullish values removed.
+ * @param array The array to filter
+ * @returns A new array with all nullish values removed
+ */
+export function nonNullifyArray<T extends unknown[] | null | undefined>(
+  array: T
+): Exclude<Exclude<T, null | undefined>[number], null | undefined>[] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (array?.filter((item) => item != null) ?? []) as any
+}
