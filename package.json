@@ -24,6 +24,46 @@
     "./react": {
       "import": "./dist/react.mjs",
       "require": "./dist/react.cjs"
+    },
+    "./base/array": {
+      "import": "./dist/base/array.mjs",
+      "require": "./dist/base/array.cjs"
+    },
+    "./base/object": {
+      "import": "./dist/base/object.mjs",
+      "require": "./dist/base/object.cjs"
+    },
+    "./base/string": {
+      "import": "./dist/base/string.mjs",
+      "require": "./dist/base/string.cjs"
+    },
+    "./base/number": {
+      "import": "./dist/base/number.mjs",
+      "require": "./dist/base/number.cjs"
+    },
+    "./base/size": {
+      "import": "./dist/base/size.mjs",
+      "require": "./dist/base/size.cjs"
+    },
+    "./base/otp": {
+      "import": "./dist/base/otp.mjs",
+      "require": "./dist/base/otp.cjs"
+    },
+    "./node/md4": {
+      "import": "./dist/node/md4.mjs",
+      "require": "./dist/node/md4.cjs"
+    },
+    "./node/windows-env": {
+      "import": "./dist/node/windows-env.mjs",
+      "require": "./dist/node/windows-env.cjs"
+    },
+    "./server/route": {
+      "import": "./dist/server/route.mjs",
+      "require": "./dist/server/route.cjs"
+    },
+    "./server/socket-io": {
+      "import": "./dist/server/socket-io.mjs",
+      "require": "./dist/server/socket-io.cjs"
     }
   },
   "typesVersions": {
@@ -47,6 +87,46 @@
       "react": [
         "./dist/react.d.mts",
         "./dist/react.d.cts"
+      ],
+      "base/array": [
+        "./dist/base/array.d.mts",
+        "./dist/base/array.d.cts"
+      ],
+      "base/object": [
+        "./dist/base/object.d.mts",
+        "./dist/base/object.d.cts"
+      ],
+      "base/string": [
+        "./dist/base/string.d.mts",
+        "./dist/base/string.d.cts"
+      ],
+      "base/number": [
+        "./dist/base/number.d.mts",
+        "./dist/base/number.d.cts"
+      ],
+      "base/size": [
+        "./dist/base/size.d.mts",
+        "./dist/base/size.d.cts"
+      ],
+      "base/otp": [
+        "./dist/base/otp.d.mts",
+        "./dist/base/otp.d.cts"
+      ],
+      "node/md4": [
+        "./dist/node/md4.d.mts",
+        "./dist/node/md4.d.cts"
+      ],
+      "node/windows-env": [
+        "./dist/node/windows-env.d.mts",
+        "./dist/node/windows-env.d.cts"
+      ],
+      "server/route": [
+        "./dist/server/route.d.mts",
+        "./dist/server/route.d.cts"
+      ],
+      "server/socket-io": [
+        "./dist/server/socket-io.d.mts",
+        "./dist/server/socket-io.d.cts"
       ]
     }
   },
@@ -57,7 +137,8 @@
     "fix": "eslint . --fix",
     "tc": "tsc --noEmit --watch",
     "vite": "vite dev",
-    "build": "tsdown --config ./tsdown.config.ts",
+    "exports": "tsx ./write-exports.ts",
+    "build": "npm run exports && tsdown --config ./tsdown.config.ts",
     "dev": "concurrently --names \"R,T\" --prefix-colors \"blue.dim,magenta.dim\" \"tsdown --config ./tsdown.config.ts --watch\" \"tsc --noEmit --watch\"",
     "start": "tsx --watch ./src/index.ts",
     "prepublishOnly": "rm -rf ./dist && npm run lint && npm run build && npm run test"
