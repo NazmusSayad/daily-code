@@ -5,16 +5,16 @@ A collection of robust, type-safe utilities and helpers for Node.js, browser, Re
 ## Features
 
 - **Type-safe utilities** for Node.js, browser, React, and server environments
-- **Array manipulation** (shuffle, chunk, partition, sort by frequency)
+- **Array manipulation** (shuffle, chunk, partition, sort by frequency, remove nullish values)
 - **String processing** (capitalize, title case, truncate, UUID generation)
-- **Number utilities** (random numbers, clamping, size parsing)
+- **Object utilities** (pick, omit, conditional undefined)
 - **Color conversion and image generation** (hex to RGB, canvas images, avatars, gradients)
 - **DOM manipulation** (element creation, file downloads, cookie management)
 - **Async utilities** (wait, suspense handlers)
 - **Environment variable management** for Windows (PowerShell integration)
 - **Route and socket wrappers** for server logic (Express, Socket.IO)
 - **React hooks and components** (context, effects, error boundaries)
-- **TypeScript utilities** (Prettify, OmitPartials, PrettifyRecord)
+- **TypeScript utilities** (Prettify, OmitPartials, PrettifyRecord, PrettifyArray, Nullify, NullifyPartial)
 - Written in modern TypeScript with strict type safety
 - Minimal bundle size
 - Zero dependencies
@@ -52,10 +52,19 @@ import { routeWrapper, createSocketIoRouter } from 'daily-code/server'
 import { createContext, ErrorBoundary } from 'daily-code/react'
 
 // Type utilities
-import type { Prettify, OmitPartials } from 'daily-code/ts'
+import type { Prettify, OmitPartials } from 'daily-code'
 
-// React utilities
-import { useEffectState } from 'daily-code/react'
+// Granular imports for smaller bundles
+import { arrayShuffle } from 'daily-code/base/array'
+import { objectPick } from 'daily-code/base/object'
+import { stringCapitalize } from 'daily-code/base/string'
+import { generateOtp } from 'daily-code/base/otp'
+import { formatBytesToHumanReadable } from 'daily-code/base/size'
+import { randomNumber } from 'daily-code/base/number'
+import { applyNodeMD4Issue } from 'daily-code/node/md4'
+import { readEnv, writeEnv } from 'daily-code/node/windows-env'
+import { routeWrapper } from 'daily-code/server/route'
+import { SocketIoRouter } from 'daily-code/server/socket-io'
 ```
 
 ## Utilities Overview
@@ -69,6 +78,7 @@ import { useEffectState } from 'daily-code/react'
 - `arrayChunk(arr, size)`: Split an array into chunks of specified size
 - `arrayPartition(arr, predicate)`: Partition an array into two arrays based on a predicate function
 - `sortByFrequency(arr)`: Sorts an array by frequency of elements (most frequent first)
+- `nonNullifyArray(arr)`: Returns a new array with all nullish values removed
 
 #### Number Utilities
 
@@ -84,6 +94,7 @@ import { useEffectState } from 'daily-code/react'
 
 - `objectPick(obj, keys)`: Create a new object by picking specified keys
 - `objectOmit(obj, keys)`: Create a new object by omitting specified keys
+- `undefinedIfHasNoKeys(obj)`: Returns undefined if the object has no keys, otherwise returns the object
 
 #### String Utilities
 
@@ -183,8 +194,11 @@ import { useEffectState } from 'daily-code/react'
 
 - `ErrorBoundary`: React error boundary component for catching and displaying errors
 
-### Type Utilities (`daily-code/ts`)
+### Type Utilities (`daily-code/types`)
 
 - `Prettify<T>`: Flatten and prettify complex TypeScript types for better readability
 - `OmitPartials<T>`: Omit partial (nullable) properties from an object type
 - `PrettifyRecord<T>`: Simplify and flatten record types for better readability in type hints
+- `PrettifyArray<T>`: Simplify and flatten array types for better readability in type hints
+- `Nullify<T>`: Make all properties of an object type nullable
+- `NullifyPartial<T>`: Make all properties of an object type optional and nullable
