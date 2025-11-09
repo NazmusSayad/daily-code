@@ -102,12 +102,12 @@
   },
   "author": "Nazmus Sayad",
   "license": "MIT",
-  "homepage": "https://github.com/NazmusSayad/daily-code#readme",
+  "homepage": "https://gh.sayad.dev/daily-code#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/NazmusSayad/daily-code.git"
+    "url": "git+https://gh.sayad.dev/daily-code.git"
   },
   "bugs": {
-    "url": "https://github.com/NazmusSayad/daily-code/issues"
+    "url": "https://gh.sayad.dev/issues"
   }
 }
