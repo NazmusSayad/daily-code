@@ -60,7 +60,8 @@
   },
   "scripts": {
     "prepare": "husky",
-    "test": "vitest",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "lint": "eslint .",
     "fix": "eslint . --fix",
     "tc": "tsc --noEmit --watch",
