@@ -98,7 +98,8 @@
     "tsdown": "^0.15.9",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.1",
-    "vite": "^7.1.10"
+    "vite": "^7.1.10",
+    "vitest": "^4.0.15"
   },
   "author": "Nazmus Sayad",
   "license": "MIT",
@@ -109,8 +110,5 @@
   },
   "bugs": {
     "url": "https://gh.sayad.dev/daily-code/issues"
-  },
-  "dependencies": {
-    "vitest": "^4.0.15"
   }
 }
