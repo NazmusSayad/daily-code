@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { adler32, chunk, crc32 } from './lib'
 
 describe('crc32', () => {

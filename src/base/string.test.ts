@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'bun:test'
+import { describe, expect, it } from 'vitest'
 import { stringCapitalize, stringToTitleCase } from './string'
 
 describe('stringCapitalize', () => {
