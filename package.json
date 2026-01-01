@@ -1,7 +1,21 @@
 {
   "name": "daily-code",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "sideEffects": false,
+  "scripts": {
+    "prepare": "husky",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
+    "lint": "eslint .",
+    "fix": "eslint . --fix",
+    "tc": "tsc --noEmit --watch",
+    "vite": "vite dev",
+    "exports": "tsx ./write-exports.ts",
+    "build": "tsdown --config ./tsdown.config.ts",
+    "dev": "concurrently --names \"R,T\" --prefix-colors \"blue.dim,magenta.dim\" \"tsdown --config ./tsdown.config.ts --watch\" \"tsc --noEmit --watch\"",
+    "start": "tsx --watch ./src/index.ts",
+    "prepublishOnly": "rm -rf ./dist && npm run lint && npm run build && npm run test"
+  },
   "main": "./dist/index.cjs",
   "module": "./dist/index.mjs",
   "exports": {
@@ -58,20 +72,6 @@
       ]
     }
   },
-  "scripts": {
-    "prepare": "husky",
-    "test": "vitest run",
-    "test:watch": "vitest watch",
-    "lint": "eslint .",
-    "fix": "eslint . --fix",
-    "tc": "tsc --noEmit --watch",
-    "vite": "vite dev",
-    "exports": "tsx ./write-exports.ts",
-    "build": "npm run exports && tsdown --config ./tsdown.config.ts",
-    "dev": "concurrently --names \"R,T\" --prefix-colors \"blue.dim,magenta.dim\" \"tsdown --config ./tsdown.config.ts --watch\" \"tsc --noEmit --watch\"",
-    "start": "tsx --watch ./src/index.ts",
-    "prepublishOnly": "rm -rf ./dist && npm run lint && npm run build && npm run test"
-  },
   "devDependencies": {
     "@eslint/compat": "^1.4.1",
     "@eslint/eslintrc": "^3.3.3",
@@ -101,14 +101,14 @@
     "vite": "^7.2.7",
     "vitest": "^4.0.15"
   },
-  "author": "Nazmus Sayad",
   "license": "MIT",
-  "homepage": "https://gh.sayad.dev/daily-code#readme",
+  "author": "Nazmus Sayad",
+  "homepage": "https://github.com/NazmusSayad/daily-code#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://gh.sayad.dev/daily-code.git"
+    "url": "git+https://github.com/NazmusSayad/daily-code.git"
   },
   "bugs": {
-    "url": "https://gh.sayad.dev/daily-code/issues"
+    "url": "https://github.com/NazmusSayad/daily-code/issues"
   }
 }
