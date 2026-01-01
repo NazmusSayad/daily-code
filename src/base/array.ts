@@ -3,8 +3,19 @@
  * @param start The starting number (inclusive)
  * @param end The ending number (exclusive)
  * @returns An array of numbers from start to end - 1
+ * @deprecated Use `arrayNumberRange` instead
  */
 export function numberRange(start: number, end: number): number[] {
+  return Array.from({ length: end - start }, (_, i) => start + i)
+}
+
+/**
+ * Creates an array of numbers from start (inclusive) to end (exclusive).
+ * @param start The starting number (inclusive)
+ * @param end The ending number (exclusive)
+ * @returns An array of numbers from start to end - 1
+ */
+export function arrayNumberRange(start: number, end: number): number[] {
   return Array.from({ length: end - start }, (_, i) => start + i)
 }
 
@@ -49,8 +60,27 @@ export function arrayPartition<T>(
  * Sorts an array by frequency of elements.
  * @param arr The array to sort
  * @returns A new array sorted by frequency
+ * @deprecated Use `arraySortByFrequency` instead
  */
 export function sortByFrequency<T>(arr: T[]): T[] {
+  const freqMap = new Map<T, number>()
+
+  for (const item of arr) {
+    freqMap.set(item, (freqMap.get(item) ?? 0) + 1)
+  }
+
+  const sorted = [...freqMap.entries()]
+    .sort((a, b) => b[1] - a[1])
+    .map(([item]) => item)
+
+  return [...new Set(sorted)]
+}
+/**
+ * Sorts an array by frequency of elements.
+ * @param arr The array to sort
+ * @returns A new array sorted by frequency
+ */
+export function arraySortByFrequency<T>(arr: T[]): T[] {
   const freqMap = new Map<T, number>()
 
   for (const item of arr) {
@@ -68,8 +98,21 @@ export function sortByFrequency<T>(arr: T[]): T[] {
  * Returns a new array with all nullish values removed.
  * @param array The array to filter
  * @returns A new array with all nullish values removed
+ * @deprecated Use `arrayNonNullable` instead
  */
 export function nonNullifyArray<T extends unknown[] | null | undefined>(
+  array: T
+): Exclude<Exclude<T, null | undefined>[number], null | undefined>[] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return (array?.filter((item) => item != null) ?? []) as any
+}
+
+/**
+ * Returns a new array with all nullish values removed.
+ * @param array The array to filter
+ * @returns A new array with all nullish values removed
+ */
+export function arrayNonNullable<T extends unknown[] | null | undefined>(
   array: T
 ): Exclude<Exclude<T, null | undefined>[number], null | undefined>[] {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
