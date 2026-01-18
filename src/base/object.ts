@@ -33,6 +33,82 @@ export function objectOmit<T extends object, K extends keyof T>(
 }
 
 /**
+ * Creates a new object by omitting null and undefined values from the input object.
+ * @param obj The source object
+ * @returns A new object without null and undefined values
+ */
+export function objectOmitNullish<T extends object>(
+  obj: T
+): {
+  [K in keyof T as null extends T[K]
+    ? never
+    : undefined extends T[K]
+      ? never
+      : K]: T[K]
+} {
+  const result = {} as Record<string, unknown>
+
+  for (const key in obj) {
+    const value = obj[key]
+
+    if (value !== null && value !== undefined) {
+      result[key] = value
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return result as any
+}
+
+/**
+ * Creates a new object by omitting null values from the input object.
+ * @param obj The source object
+ * @returns A new object without null values
+ */
+export function objectOmitNull<T extends object>(
+  obj: T
+): {
+  [K in keyof T as null extends T[K] ? never : K]: T[K]
+} {
+  const result = {} as Record<string, unknown>
+
+  for (const key in obj) {
+    const value = obj[key]
+
+    if (value !== null) {
+      result[key] = value
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return result as any
+}
+
+/**
+ * Creates a new object by omitting undefined values from the input object.
+ * @param obj The source object
+ * @returns A new object without undefined values
+ */
+export function objectOmitUndefined<T extends object>(
+  obj: T
+): {
+  [K in keyof T as undefined extends T[K] ? never : K]: T[K]
+} {
+  const result = {} as Record<string, unknown>
+
+  for (const key in obj) {
+    const value = obj[key]
+
+    if (value !== undefined) {
+      result[key] = value
+    }
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return result as any
+}
+
+/**
  * Returns undefined if the object has no keys.
  * @param obj The object to check
  * @returns The object if it has keys, undefined otherwise
